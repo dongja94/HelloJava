@@ -1,6 +1,9 @@
 package org.tacademy.hellojava.shape;
 
+import java.io.PrintStream;
 import java.util.Random;
+
+import org.tacademy.hellojava.drawable.Rect;
 
 public class Circle extends Shape {
 	
@@ -14,6 +17,9 @@ public class Circle extends Shape {
 		center = new Point(x,y);
 		int min = Math.min(x, y);
 		radius = 19 + r.nextInt(min - 19);
+		setBounds();
+		x = getLeft();
+		y = getTop();
 	}
 
 	@Override
@@ -33,6 +39,21 @@ public class Circle extends Shape {
 	@Override
 	public String toString() {
 		return "circle : c - (" + center + "), r - " + radius;
+	}
+
+	@Override
+	public void draw(PrintStream canvas) {
+		canvas.println(toString());
+	}
+
+
+	@Override
+	protected void onPositionChanged() {
+		int centerX = x + radius;
+		int centerY = y + radius;
+		center.setX(centerX);
+		center.setY(centerY);
+		setBounds();
 	}
 
 }

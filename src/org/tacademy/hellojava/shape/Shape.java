@@ -1,6 +1,12 @@
 package org.tacademy.hellojava.shape;
 
-public abstract class Shape {
+import java.util.Random;
+
+import org.tacademy.hellojava.drawable.Drawable;
+import org.tacademy.hellojava.drawable.OnDrawableChangeListener;
+import org.tacademy.hellojava.drawable.Rect;
+
+public abstract class Shape implements Drawable {
 	int left, right, top, bottom;
 	
 	public abstract void setBounds();
@@ -56,6 +62,42 @@ public abstract class Shape {
 		setRight(right);
 		setBottom(bottom);
 	}
+
+	OnDrawableChangeListener mListener;
+	public void setOnDrawableChangeListener(OnDrawableChangeListener listener) {
+		mListener = listener;
+	}
 	
+	protected int x, y;
+	@Override
+	public void setPosition(int x, int y) {
+		if (this.x != x || this.y != y) {
+			this.x = x;
+			this.y = y;
+			if (mListener != null) {
+				mListener.onPositionChanged(this);
+			}
+		}
+	}
 	
+	abstract protected void onPositionChanged();
+
+	@Override
+	public Rect getBounds() {
+		return new Rect(getLeft(), getTop(), getRight(), getBottom());
+	}
+
+	@Override
+	public Point getPosition() {
+		return new Point(x,y);
+	}
+	Random r = new Random();
+	
+	@Override
+	public void movePosition() {
+		
+		int dx = 5 + r.nextInt(5);
+		int dy = 5 + r.nextInt(5);
+		setPosition(x + dx, y + dy);
+	}
 }

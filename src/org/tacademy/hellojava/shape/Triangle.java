@@ -1,6 +1,9 @@
 package org.tacademy.hellojava.shape;
 
+import java.io.PrintStream;
 import java.util.Random;
+
+import org.tacademy.hellojava.drawable.Rect;
 
 public class Triangle extends Shape {
 	Point[] points = new Point[3];
@@ -16,6 +19,9 @@ public class Triangle extends Shape {
 		points[0] = new Point(x1, y1);
 		points[1] = new Point(x2, y2);
 		points[2] = new Point(x3, y3);
+		setBounds();
+		x = getLeft();
+		y = getRight();
 	}
 
 	@Override
@@ -37,6 +43,28 @@ public class Triangle extends Shape {
 	@Override
 	public String toString() {
 		return "triangle : " + points.toString();
+	}
+
+	@Override
+	public void draw(PrintStream canvas) {
+		canvas.println(toString());
+	}
+
+	@Override
+	protected void onPositionChanged() {
+		int x1 = x;
+		int y1 = y;
+		int x2 = x + points[1].getX() - points[0].getX();
+		int y2 = y + points[1].getY() - points[0].getY();
+		int x3 = x1;
+		int y3 = y2;
+		points[0].setX(x1);
+		points[0].setY(y1);
+		points[1].setX(x2);
+		points[1].setY(y2);
+		points[2].setX(x3);
+		points[2].setY(y3);
+		setBounds();
 	}
 	
 }
