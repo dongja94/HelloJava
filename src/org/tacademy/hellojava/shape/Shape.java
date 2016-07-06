@@ -54,7 +54,7 @@ public abstract class Shape {
 		setLeft(left);
 		setTop(top);
 		setRight(right);
-		setBottom(bottm);
+		setBottom(bottom);
 	}
 	
 	
