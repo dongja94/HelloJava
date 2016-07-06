@@ -77,6 +77,7 @@ public abstract class Shape implements Drawable {
 			if (mListener != null) {
 				mListener.onPositionChanged(this);
 			}
+			onPositionChanged();
 		}
 	}
 	
