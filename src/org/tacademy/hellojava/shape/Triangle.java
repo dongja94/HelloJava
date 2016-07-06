@@ -1,0 +1,42 @@
+package org.tacademy.hellojava.shape;
+
+import java.util.Random;
+
+public class Triangle extends Shape {
+	Point[] points = new Point[3];
+	
+	public Triangle() {
+		Random r = new Random();
+		int x1 = r.nextInt(30);
+		int y1 = r.nextInt(30);
+		int x2 = x1 + 1 + r.nextInt(30);
+		int y2 = y1 + 1 + r.nextInt(30);
+		int x3 = x1;
+		int y3 = y2;
+		points[0] = new Point(x1, y1);
+		points[1] = new Point(x2, y2);
+		points[2] = new Point(x3, y3);
+	}
+
+	@Override
+	public void setBounds() {
+		int left = points[0].getX();
+		int top = points[0].getY();
+		int right = points[1].getX();
+		int bottom = points[1].getY();
+		setBounds(left, top, right, bottom);
+	}
+
+	@Override
+	public int caculateArea() {
+		int height = points[1].getY() - points[0].getY();
+		int width = points[1].getX() - points[0].getX();
+		return height * width / 2;
+	}
+	
+	@Override
+	public String toString() {
+		return "triangle : " + points.toString();
+	}
+	
+}
