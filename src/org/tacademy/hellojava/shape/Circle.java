@@ -4,13 +4,14 @@ import java.io.PrintStream;
 import java.util.Random;
 
 import org.tacademy.hellojava.drawable.Rect;
+import org.tacademy.hellojava.exception.BadPointException;
 
 public class Circle extends Shape {
 	
 	Point center;
 	int radius;
 	
-	public Circle() {
+	public Circle() throws BadPointException {
 		Random r = new Random();
 		int x = 20 + r.nextInt(30);
 		int y = 20 + r.nextInt(30);
@@ -48,7 +49,7 @@ public class Circle extends Shape {
 
 
 	@Override
-	protected void onPositionChanged() {
+	protected void onPositionChanged() throws BadPointException {
 		int centerX = x + radius;
 		int centerY = y + radius;
 		center.setX(centerX);

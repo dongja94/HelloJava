@@ -3,6 +3,8 @@ package org.tacademy.hellojava.drawable;
 import java.io.PrintStream;
 import java.util.Random;
 
+import org.tacademy.hellojava.exception.BadPointException;
+import org.tacademy.hellojava.exception.BadPositionException;
 import org.tacademy.hellojava.shape.Point;
 
 public abstract class AbstractDrawable implements Drawable {
@@ -17,6 +19,9 @@ public abstract class AbstractDrawable implements Drawable {
 	
 	@Override
 	public void setPosition(int x, int y) {
+		
+		if (x < 0 || y < 0) new BadPositionException();
+		
 		if (this.x != x || this.y != y) {
 			this.x = x;
 			this.y = y;
@@ -32,7 +37,7 @@ public abstract class AbstractDrawable implements Drawable {
 	}
 	
 	@Override
-	public Point getPosition() {
+	public Point getPosition() throws BadPointException {
 		return new Point(x,y);
 	}
 

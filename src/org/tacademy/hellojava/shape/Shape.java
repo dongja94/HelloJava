@@ -5,6 +5,8 @@ import java.util.Random;
 import org.tacademy.hellojava.drawable.Drawable;
 import org.tacademy.hellojava.drawable.OnDrawableChangeListener;
 import org.tacademy.hellojava.drawable.Rect;
+import org.tacademy.hellojava.exception.BadPointException;
+import org.tacademy.hellojava.exception.BadPositionException;
 
 public abstract class Shape implements Drawable {
 	int left, right, top, bottom;
@@ -71,17 +73,25 @@ public abstract class Shape implements Drawable {
 	protected int x, y;
 	@Override
 	public void setPosition(int x, int y) {
+		if (x < 0 || y < 0) {
+			throw new BadPositionException();
+		}
 		if (this.x != x || this.y != y) {
 			this.x = x;
 			this.y = y;
 			if (mListener != null) {
 				mListener.onPositionChanged(this);
 			}
-			onPositionChanged();
+			try {
+				onPositionChanged();
+			} catch (BadPointException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
-	abstract protected void onPositionChanged();
+	abstract protected void onPositionChanged() throws BadPointException;
 
 	@Override
 	public Rect getBounds() {
@@ -89,7 +99,7 @@ public abstract class Shape implements Drawable {
 	}
 
 	@Override
-	public Point getPosition() {
+	public Point getPosition() throws BadPointException {
 		return new Point(x,y);
 	}
 	Random r = new Random();

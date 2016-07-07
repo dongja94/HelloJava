@@ -4,11 +4,12 @@ import java.io.PrintStream;
 import java.util.Random;
 
 import org.tacademy.hellojava.drawable.Rect;
+import org.tacademy.hellojava.exception.BadPointException;
 
 public class Triangle extends Shape {
 	Point[] points = new Point[3];
 	
-	public Triangle() {
+	public Triangle() throws BadPointException {
 		Random r = new Random();
 		int x1 = r.nextInt(30);
 		int y1 = r.nextInt(30);
@@ -51,7 +52,7 @@ public class Triangle extends Shape {
 	}
 
 	@Override
-	protected void onPositionChanged() {
+	protected void onPositionChanged() throws BadPointException {
 		int x1 = x;
 		int y1 = y;
 		int x2 = x + points[1].getX() - points[0].getX();
