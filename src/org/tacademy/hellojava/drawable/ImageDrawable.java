@@ -2,8 +2,10 @@ package org.tacademy.hellojava.drawable;
 
 import java.io.PrintStream;
 
+import org.tacademy.hellojava.annotation.Enemy;
 import org.tacademy.hellojava.image.Image;
 
+@Enemy
 public class ImageDrawable extends AbstractDrawable {
 	
 	Image image;

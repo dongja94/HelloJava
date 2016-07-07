@@ -2,6 +2,8 @@ package org.tacademy.hellojava;
 
 import java.util.Random;
 
+import org.tacademy.hellojava.annotation.Enemy;
+import org.tacademy.hellojava.annotation.Friend;
 import org.tacademy.hellojava.drawable.AbstractDrawable;
 import org.tacademy.hellojava.drawable.Drawable;
 import org.tacademy.hellojava.drawable.ImageDrawable;
@@ -52,6 +54,12 @@ public class Main implements OnDrawableChangeListener {
 	public void printDrawable() {
 		for (Drawable d : drawables) {
 			d.draw(System.out);
+			if (d.getClass().isAnnotationPresent(Friend.class)) {
+//				Friend friend = d.getClass().getAnnotation(Friend.class);
+				System.out.println("Friend");
+			} else if (d.getClass().isAnnotationPresent(Enemy.class)) {
+				System.out.println("Enemy");
+			}
 		}
 	}
 
@@ -60,6 +68,15 @@ public class Main implements OnDrawableChangeListener {
 			d.movePosition();
 		}
 	}
+	
+	public boolean isCollapse(Drawable d1, Drawable d2) {
+		if ((d1.getClass().isAnnotationPresent(Friend.class) && d2.getClass().isAnnotationPresent(Friend.class)) || 
+				(d1.getClass().isAnnotationPresent(Enemy.class) && d2.getClass().isAnnotationPresent(Enemy.class))){
+			return false;
+		}
+		return true;
+	}
+	
 	public static void main(String[] args) {
 		Main main = new Main();
 //		main.createShape();

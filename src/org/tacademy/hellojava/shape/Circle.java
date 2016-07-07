@@ -3,9 +3,11 @@ package org.tacademy.hellojava.shape;
 import java.io.PrintStream;
 import java.util.Random;
 
+import org.tacademy.hellojava.annotation.Enemy;
 import org.tacademy.hellojava.drawable.Rect;
 import org.tacademy.hellojava.exception.BadPointException;
 
+@Enemy
 public class Circle extends Shape {
 	
 	Point center;
