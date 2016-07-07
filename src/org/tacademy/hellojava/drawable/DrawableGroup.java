@@ -31,5 +31,9 @@ public class DrawableGroup<T extends Drawable> extends AbstractDrawable {
 		if (getSize() == 0) return null;		
 		return items.get(0).getBounds();
 	}
+	
+	public <U,S extends String,D extends String> U isCollapse(S s, D d) {
+		return null;
+	}
 
 }

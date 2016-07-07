@@ -6,11 +6,16 @@ import org.tacademy.hellojava.annotation.Enemy;
 import org.tacademy.hellojava.annotation.Friend;
 import org.tacademy.hellojava.drawable.AbstractDrawable;
 import org.tacademy.hellojava.drawable.Drawable;
+import org.tacademy.hellojava.drawable.DrawableGroup;
+import org.tacademy.hellojava.drawable.DrawableGroupFixed;
 import org.tacademy.hellojava.drawable.ImageDrawable;
 import org.tacademy.hellojava.drawable.OnDrawableChangeListener;
+import org.tacademy.hellojava.exception.BadPointException;
 import org.tacademy.hellojava.image.Image;
+import org.tacademy.hellojava.shape.Circle;
 import org.tacademy.hellojava.shape.Shape;
 import org.tacademy.hellojava.shape.ShapeFactory;
+import org.tacademy.hellojava.shape.Triangle;
 
 public class Main implements OnDrawableChangeListener {
 	
@@ -65,6 +70,17 @@ public class Main implements OnDrawableChangeListener {
 				System.out.println("Enemy : " + name);
 			}
 		}
+	}
+	
+	public void makeDrawableGroup() throws BadPointException {
+		DrawableGroup<Circle> group = new DrawableGroup<>();
+		group.add(new Circle());
+		
+		Boolean b = group.<Boolean,String,String>isCollapse("s", "d");
+		
+		DrawableGroupFixed group2 = new DrawableGroupFixed();
+		group2.add(new Circle());
+		group2.add(new Triangle());
 	}
 
 	public void moveDrawable() {
