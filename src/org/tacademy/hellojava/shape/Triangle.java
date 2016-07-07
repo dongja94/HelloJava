@@ -3,11 +3,12 @@ package org.tacademy.hellojava.shape;
 import java.io.PrintStream;
 import java.util.Random;
 
+import org.tacademy.hellojava.annotation.Enemy;
 import org.tacademy.hellojava.annotation.Friend;
 import org.tacademy.hellojava.drawable.Rect;
 import org.tacademy.hellojava.exception.BadPointException;
 
-@Friend
+@Friend(name="Triangle",level=10)
 public class Triangle extends Shape {
 	Point[] points = new Point[3];
 	

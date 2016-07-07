@@ -5,7 +5,7 @@ import java.io.PrintStream;
 import org.tacademy.hellojava.annotation.Enemy;
 import org.tacademy.hellojava.image.Image;
 
-@Enemy
+@Enemy("image")
 public class ImageDrawable extends AbstractDrawable {
 	
 	Image image;

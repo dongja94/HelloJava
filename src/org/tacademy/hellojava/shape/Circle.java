@@ -7,7 +7,7 @@ import org.tacademy.hellojava.annotation.Enemy;
 import org.tacademy.hellojava.drawable.Rect;
 import org.tacademy.hellojava.exception.BadPointException;
 
-@Enemy
+@Enemy("circle")
 public class Circle extends Shape {
 	
 	Point center;

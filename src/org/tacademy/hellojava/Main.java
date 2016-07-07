@@ -55,10 +55,14 @@ public class Main implements OnDrawableChangeListener {
 		for (Drawable d : drawables) {
 			d.draw(System.out);
 			if (d.getClass().isAnnotationPresent(Friend.class)) {
-//				Friend friend = d.getClass().getAnnotation(Friend.class);
-				System.out.println("Friend");
+				Friend friend = d.getClass().getAnnotation(Friend.class);
+				String name = friend.name();
+				int level = friend.level();
+				System.out.println("Friend : " + name + "," + level);
 			} else if (d.getClass().isAnnotationPresent(Enemy.class)) {
-				System.out.println("Enemy");
+				Enemy enemy = d.getClass().getAnnotation(Enemy.class);
+				String name = enemy.value();
+				System.out.println("Enemy : " + name);
 			}
 		}
 	}
